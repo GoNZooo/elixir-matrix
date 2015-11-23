@@ -8,11 +8,11 @@ defmodule Matrix.Atomifier do
   end
 
   defp atom_val(x) when is_map(x) do
-    Enum.into(x, %{}, fn {k,v} -> {atom_key(k), atom_val(v)} end)
+    Enum.into(x, %{}, fn {k, v} -> {atom_key(k), atom_val(v)} end)
   end
 
   defp atom_val(x) when is_list(x) do
-    Enum.map(x, fn item -> atom_val(item) end)
+    Enum.map(x, &atom_val/1)
   end
 
   defp atom_val(x) do
